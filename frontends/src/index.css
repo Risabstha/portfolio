@@ -30,3 +30,27 @@ body,
   --background-color: #0f0f0f;
   --primary-text-color: #f3f3f3;
 }
+
+/* Autofill background fix using theme variables */
+/* Autofill + focus fix for Chrome mobile */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--background-color) inset !important;
+  -webkit-text-fill-color: var(--primary-text-color) !important;
+  color: var(--primary-text-color) !important;
+  caret-color: var(--primary-text-color) !important;
+  border-color: var(--primary-text-color) !important;
+  transition: background-color 9999s ease-in-out 0s, color 0s;
+}
+
+/* Ensure Chrome doesn't force white background on focus */
+input:focus:-webkit-autofill,
+textarea:focus:-webkit-autofill {
+  -webkit-text-fill-color: var(--primary-text-color) !important;
+  color: var(--primary-text-color) !important;
+}
+

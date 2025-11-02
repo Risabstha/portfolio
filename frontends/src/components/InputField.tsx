@@ -49,7 +49,7 @@ const InputField: React.FC<inputs> = ({
             }} // stay up if value not empty
             value={value}
             onChange={onChange}
-            className={`
+            className={` 
               w-full border-2 ${theme === "dark" ? "" : ""}  px-2 pt-4 pb-1
               text-base outline-none
               ${
