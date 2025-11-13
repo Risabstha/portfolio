@@ -6,7 +6,7 @@ import DownloadButton from "../components/DownloadButton";
 import Symbol from "../components/Symbol";
 import DotGrid from "../components/DotGrid";
 import SquareBox from "../components/SquareBox";
-import profile from "../assets/Profile.png"
+import profile from "../assets/Profile.png";
 
 // type type = "Full Stack Developer" | "Web Developer";
 const texts = ["FullStack Developer", "Web Developer"];
@@ -60,10 +60,10 @@ function reducer(state: State, action: Action) {
 
 const Home = () => {
   // 3D hover effect on picture
-   const imgRef = useRef(null);
+  const imgRef = useRef(null);
 
-   const handleMouseMove = (e : any ) => {
-    const img : any = imgRef.current;
+  const handleMouseMove = (e: any) => {
+    const img: any = imgRef.current;
     const rect = img.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -78,31 +78,30 @@ const Home = () => {
   };
 
   const handleMouseLeave = () => {
-    const img : any = imgRef.current;
+    const img: any = imgRef.current;
     img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
   };
-
 
   const { theme } = useTheme();
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [dotLength, setDotLength] = useState(25); // default
-  
-    useEffect(() => {
-      const updateLength = () => {
-        if (window.innerWidth < 896) {
-          setDotLength(16);
-        } else {
-          setDotLength(25);
-        }
-      };
-  
-      updateLength(); // run once on mount
-      window.addEventListener("resize", updateLength);
-      return () => window.removeEventListener("resize", updateLength);
-    }, []);
-  
+  const [dotLength, setDotLength] = useState(25); // default
+
+  useEffect(() => {
+    const updateLength = () => {
+      if (window.innerWidth < 896) {
+        setDotLength(16);
+      } else {
+        setDotLength(25);
+      }
+    };
+
+    updateLength(); // run once on mount
+    window.addEventListener("resize", updateLength);
+    return () => window.removeEventListener("resize", updateLength);
+  }, []);
+
   // const texts = ["Full Stack Developer", "Web Developer"];
   // const [index, setIndex] = useState(0);
   // const [displayed, setDisplayed] = useState(texts[0]);
@@ -188,9 +187,7 @@ const Home = () => {
   }, [state.displayed, state.phase, state.index]);
 
   return (
-    <div
-      className="  font-['Fira_Code',monospace]"
-    >
+    <div className="  font-['Fira_Code',monospace]">
       {/* Desktop view */}
       <div
         className="hidden md:flex md:justify-center 
@@ -251,9 +248,10 @@ const Home = () => {
             xl:text-[1.25rem]
             font-medium"
             >
-              I am a React developer who builds fast, smooth, and user-friendly web applications. 
-              I use the MERN stack to deliver full-stack solutions, 
-              turning complex problems into clean, efficient code. Always learning, always building.
+              I am a React developer who builds fast, smooth, and user-friendly
+              web applications. I use the MERN stack to deliver full-stack
+              solutions, turning complex problems into clean, efficient code.
+              Always learning, always building.
             </p>
 
             <div
@@ -281,20 +279,26 @@ const Home = () => {
               />
 
               <div
-              className="relative w-full perspective-[1000px]"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}>
-                {/* image lai relative banaune rw bottom ma place garne , ani image le svg rw dot lai cover garnxa */}
-                <img
-                  ref={imgRef}
-                  className={`rounded-[15%] transition-transform duration-200 ease-out w-full 
-                            ${ theme === 'dark' ?
-                                "hover:shadow-[0_5px_20px_rgba(0,0,0,0.25)]" : 
-                                  "hover:shadow-[0_10px_20px_rgba(0,0,0,0.25)]"}`}
-                  src={profile}
-                  alt="profile"
-                  fetchPriority="high"    // image loading priority badhauna
-                />
+                className="relative w-full perspective-[1000px]"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+              >
+                <picture>
+                  <source srcSet={profile} type="image/webp" />
+                  {/* image lai relative banaune rw bottom ma place garne , ani image le svg rw dot lai cover garnxa */}
+                  <img
+                    ref={imgRef}
+                    className={`rounded-[15%] transition-transform duration-200 ease-out w-full 
+                            ${
+                              theme === "dark"
+                                ? "hover:shadow-[0_5px_20px_rgba(0,0,0,0.25)]"
+                                : "hover:shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
+                            }`}
+                    src={profile}
+                    alt="profile"
+                    fetchPriority="high" // image loading priority badhauna
+                  />
+                </picture>
               </div>
 
               {/* yeslai img mathi rakhyo vane yeslai img le xopxa */}
@@ -325,13 +329,16 @@ const Home = () => {
             />
 
             <div>
-              {/* image lai relative banaune rw bottom ma place garne , ani image le svg rw dot lai cover garnxa */}
-              <img
-                className="relative z-0  rounded-[15%] w-[12rem]"
-                src={profile}
-                alt="profile image"
-                fetchPriority="high"
-              />
+              <picture>
+                <source srcSet={profile} type="image/webp" />
+                {/* image lai relative banaune rw bottom ma place garne , ani image le svg rw dot lai cover garnxa */}
+                <img
+                  className="relative z-0  rounded-[15%] w-[12rem]"
+                  src={profile}
+                  alt="profile image"
+                  fetchPriority="high"
+                />
+              </picture>
             </div>
 
             {/* yeslai img mathi rakhyo vane yeslai img le xopxa */}
